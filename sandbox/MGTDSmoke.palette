@@ -1,0 +1,17 @@
+Name: Smoke
+Background: #fff
+Foreground: #000
+PrimaryPale: #aaa
+PrimaryLight: #777
+PrimaryMid: #111
+PrimaryDark: #000
+SecondaryPale: #ffc
+SecondaryLight: #fe8
+SecondaryMid: #db4
+SecondaryDark: #841
+TertiaryPale: #eee
+TertiaryLight: #ccc
+TertiaryMid: #999
+TertiaryDark: #666
+Error: #f88
+

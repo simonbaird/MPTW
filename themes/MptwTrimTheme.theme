@@ -1,0 +1,27 @@
+|Name|MptwTrim|
+|Description|Mptw Theme with a reduced header to increase useful space|
+|ViewTemplate|MptwTheme##ViewTemplate|
+|EditTemplate|MptwTheme##EditTemplate|
+|StyleSheet|MptwTheme##StyleSheet|
+|PageTemplate|##PageTemplate|
+
+!PageTemplate
+<!--{{{-->
+
+<!-- horizontal MainMenu -->
+<div id='topMenu' macro='gradient vert [[ColorPalette::PrimaryLight]] [[ColorPalette::PrimaryMid]]'>
+<span refresh='content' tiddler='SiteTitle' style="padding-left:1em;font-weight:bold;"></span>:
+<span refresh='content' tiddler='MainMenu'></span>
+</div>
+<div id='sidebar'>
+	<div id='sidebarOptions'>
+		<div refresh='content' tiddler='SideBarOptions'></div>
+		<div style="margin-left:0.1em;"
+			macro='slider chkTabSliderPanel SideBarTabs {{"tabs \u00bb"}} "Show Timeline, All, Tags, etc"'></div>
+	</div>
+</div>
+<div id='displayArea'>
+	<div id='messageArea'></div>
+	<div id='tiddlerDisplay'></div>
+</div>
+

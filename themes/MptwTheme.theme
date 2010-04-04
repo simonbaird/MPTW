@@ -1,0 +1,288 @@
+|Name|MptwTheme|
+|Description|Mptw Theme including custom PageLayout|
+|PageTemplate|##PageTemplate|
+|ViewTemplate|##ViewTemplate|
+|EditTemplate|##EditTemplate|
+|StyleSheet|##StyleSheet|
+
+http://mptw.tiddlyspot.com/#MptwTheme ($Rev: 1829 $)
+
+!PageTemplate
+<!--{{{-->
+<div class='header' macro='gradient vert [[ColorPalette::PrimaryLight]] [[ColorPalette::PrimaryMid]]'>
+	<div class='headerShadow'>
+		<span class='siteTitle' refresh='content' tiddler='SiteTitle'></span>&nbsp;
+		<span class='siteSubtitle' refresh='content' tiddler='SiteSubtitle'></span>
+	</div>
+	<div class='headerForeground'>
+		<span class='siteTitle' refresh='content' tiddler='SiteTitle'></span>&nbsp;
+		<span class='siteSubtitle' refresh='content' tiddler='SiteSubtitle'></span>
+	</div>
+</div>
+<!-- horizontal MainMenu -->
+<div id='topMenu' refresh='content' tiddler='MainMenu'></div>
+<!-- original MainMenu menu -->
+<!-- <div id='mainMenu' refresh='content' tiddler='MainMenu'></div> -->
+<div id='sidebar'>
+	<div id='sidebarOptions' refresh='content' tiddler='SideBarOptions'></div>
+	<div id='sidebarTabs' refresh='content' force='true' tiddler='SideBarTabs'></div>
+</div>
+<div id='displayArea'>
+	<div id='messageArea'></div>
+	<div id='tiddlerDisplay'></div>
+</div>
+<!--}}}-->
+
+!ViewTemplate
+<!--{{{-->
+<div class="uncollapsedView">
+[[MptwTheme##ViewTemplateToolbar]]
+
+<div class="tagglyTagged" macro="tags"></div>
+
+<div class='titleContainer'>
+	<span class='title' macro='view title'></span>
+	<span macro="miniTag"></span>
+</div>
+
+<div class='subtitle'>
+	(updated <span macro='view modified date {{config.mptwDateFormat?config.mptwDateFormat:"MM/0DD/YY"}}'></span>
+	by <span macro='view modifier link'></span>)
+	<!--
+	(<span macro='message views.wikified.createdPrompt'></span>
+	<span macro='view created date {{config.mptwDateFormat?config.mptwDateFormat:"MM/0DD/YY"}}'></span>)
+	-->
+</div>
+
+<div macro="showWhen tiddler.tags.containsAny(['css','html','pre','systemConfig']) && !tiddler.text.match('{{'+'{')">
+	<div class='viewer'><pre macro='view text'></pre></div>
+</div>
+<div macro="else">
+	<div class='viewer' macro='view text wikified'></div>
+</div>
+
+<div class="tagglyTagging" macro="tagglyTagging"></div>
+</div>
+<div class="collapsedView">
+	<span class='toolbar'>
+		<span macro='toolbar closeTiddler'></span>
+		<span macro='mptwCollapse +'></span>
+	</span>
+	<span class='title' macro='view title'></span>
+</div>
+
+<!--}}}-->
+
+!ViewTemplateToolbar
+<!--{{{-->
+<div class='toolbar'>
+	<span macro="showWhenTagged systemConfig">
+		<span macro="toggleTag systemConfigDisable . '[[disable|systemConfigDisable]]'"></span>
+	</span>
+	<span macro="showWhenTagged systemTheme"><span macro="applyTheme"></span></span>
+	<span macro="showWhenTagged systemPalette"><span macro="applyPalette"></span></span>
+	<span macro="showWhen tiddler.tags.contains('css') || tiddler.title == 'StyleSheet'"><span macro="refreshAll"></span></span>
+	<span style="padding:1em;"></span>
+	<span macro='toolbar closeTiddler closeOthers +editTiddler deleteTiddler > fields syncing permalink references jump'></span> <span macro='newHere label:"new here"'></span>
+	<span macro='newJournalHere {{config.mptwJournalFormat?config.mptwJournalFormat:"MM/0DD/YY"}}'></span>
+	<span macro='mptwCollapse -'></span>
+</div>
+<!--}}}-->
+
+!EditTemplate
+<!--{{{-->
+<div class="toolbar" macro="toolbar +saveTiddler saveCloseTiddler closeOthers -cancelTiddler cancelCloseTiddler deleteTiddler"></div>
+<div class="title" macro="view title"></div>
+<div class="editLabel">Title</div><div class="editor" macro="edit title"></div>
+<div macro='annotations'></div>
+<div class="editLabel">Content</div><div class="editor" macro="edit text"></div>
+<div class="editLabel">Tags</div><div class="editor" macro="edit tags"></div>
+<div class="editorFooter"><span macro="message views.editor.tagPrompt"></span><span macro="tagChooser"></span></div>
+<!--}}}-->
+
+!StyleSheet
+/*{{{*/
+
+/* a contrasting background so I can see where one tiddler ends and the other begins */
+body {
+	background: [[ColorPalette::TertiaryLight]];
+}
+
+/* sexy colours and font for the header */
+.headerForeground {
+	color: [[ColorPalette::PrimaryPale]];
+}
+.headerShadow, .headerShadow a {
+	color: [[ColorPalette::PrimaryMid]];
+}
+
+/* separate the top menu parts */
+.headerForeground, .headerShadow {
+	padding: 1em 1em 0;
+}
+
+.headerForeground, .headerShadow {
+	font-family: 'Trebuchet MS' sans-serif;
+	font-weight:bold;
+}
+.headerForeground .siteSubtitle {
+	color: [[ColorPalette::PrimaryLight]];
+}
+.headerShadow .siteSubtitle {
+	color: [[ColorPalette::PrimaryMid]];
+}
+
+/* make shadow go and down right instead of up and left */
+.headerShadow {
+	left: 1px;
+	top: 1px;
+}
+
+/* prefer monospace for editing */
+.editor textarea, .editor input {
+	font-family: 'Consolas' monospace;
+	background-color:[[ColorPalette::TertiaryPale]];
+}
+
+
+/* sexy tiddler titles */
+.title {
+	font-size: 250%;
+	color: [[ColorPalette::PrimaryLight]];
+	font-family: 'Trebuchet MS' sans-serif;
+}
+
+/* more subtle tiddler subtitle */
+.subtitle {
+	padding:0px;
+	margin:0px;
+	padding-left:1em;
+	font-size: 90%;
+	color: [[ColorPalette::TertiaryMid]];
+}
+.subtitle .tiddlyLink {
+	color: [[ColorPalette::TertiaryMid]];
+}
+
+/* a little bit of extra whitespace */
+.viewer {
+	padding-bottom:3px;
+}
+
+/* don't want any background color for headings */
+h1,h2,h3,h4,h5,h6 {
+	background-color: transparent;
+	color: [[ColorPalette::Foreground]];
+}
+
+/* give tiddlers 3d style border and explicit background */
+.tiddler {
+	background: [[ColorPalette::Background]];
+	border-right: 2px [[ColorPalette::TertiaryMid]] solid;
+	border-bottom: 2px [[ColorPalette::TertiaryMid]] solid;
+	margin-bottom: 1em;
+	padding:1em 2em 2em 1.5em;
+}
+
+/* make options slider look nicer */
+#sidebarOptions .sliderPanel {
+	border:solid 1px [[ColorPalette::PrimaryLight]];
+}
+
+/* the borders look wrong with the body background */
+#sidebar .button {
+	border-style: none;
+}
+
+/* this means you can put line breaks in SidebarOptions for readability */
+#sidebarOptions br {
+	display:none;
+}
+/* undo the above in OptionsPanel */
+#sidebarOptions .sliderPanel br {
+	display:inline;
+}
+
+/* horizontal main menu stuff */
+#displayArea {
+	margin: 1em 15.7em 0em 1em; /* use the freed up space */
+}
+#topMenu br {
+	display: none;
+}
+#topMenu {
+	background: [[ColorPalette::PrimaryMid]];
+	color:[[ColorPalette::PrimaryPale]];
+}
+#topMenu {
+	padding:2px;
+}
+#topMenu .button, #topMenu .tiddlyLink, #topMenu a {
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	padding-left: 3px;
+	padding-right: 3px;
+	color: [[ColorPalette::PrimaryPale]];
+	font-size: 115%;
+}
+#topMenu .button:hover, #topMenu .tiddlyLink:hover {
+	background: [[ColorPalette::PrimaryDark]];
+}
+
+/* make 2.2 act like 2.1 with the invisible buttons */
+.toolbar {
+	visibility:hidden;
+}
+.selected .toolbar {
+	visibility:visible;
+}
+
+/* experimental. this is a little borked in IE7 with the button 
+ * borders but worth it I think for the extra screen realestate */
+.toolbar { float:right; }
+
+/* fix for TaggerPlugin. from sb56637. improved by FND */
+.popup li .tagger a {
+   display:inline;
+}
+
+/* makes theme selector look a little better */
+#sidebarOptions .sliderPanel .select .button {
+  padding:0.5em;
+  display:block;
+}
+#sidebarOptions .sliderPanel .select br {
+	display:none;
+}
+
+/* make it print a little cleaner */
+@media print {
+	#topMenu {
+		display: none ! important;
+	}
+	/* not sure if we need all the importants */
+	.tiddler {
+		border-style: none ! important;
+		margin:0px ! important;
+		padding:0px ! important;
+		padding-bottom:2em ! important;
+	}
+	.tagglyTagging .button, .tagglyTagging .hidebutton {
+		display: none ! important;
+	}
+	.headerShadow {
+		visibility: hidden ! important;
+	}
+	.tagglyTagged .quickopentag, .tagged .quickopentag {
+		border-style: none ! important;
+	}
+	.quickopentag a.button, .miniTag {
+		display: none ! important;
+	}
+}
+
+/* get user styles specified in StyleSheet */
+[[StyleSheet]]
+
+/*}}}*/
+
