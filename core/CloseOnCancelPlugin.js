@@ -14,7 +14,7 @@ merge(config.commands.cancelTiddler,{
 
 	handler: function(event,src,title) {
 		this.handler_mptw_orig_closeUnsaved(event,src,title);
-		if (!store.tiddlerExists(title) && !store.isShadowTiddler(title))
+		if (!story.isDirty(title) && !store.tiddlerExists(title) && !store.isShadowTiddler(title))
 			story.closeTiddler(title,true);
 		return false;
 	}

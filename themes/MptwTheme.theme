@@ -122,7 +122,7 @@ body {
 }
 
 .headerForeground, .headerShadow {
-	font-family: 'Trebuchet MS' sans-serif;
+	font-family: 'Trebuchet MS', sans-serif;
 	font-weight:bold;
 }
 .headerForeground .siteSubtitle {
@@ -140,7 +140,7 @@ body {
 
 /* prefer monospace for editing */
 .editor textarea, .editor input {
-	font-family: 'Consolas' monospace;
+	font-family: 'Consolas', monospace;
 	background-color:[[ColorPalette::TertiaryPale]];
 }
 
@@ -149,7 +149,7 @@ body {
 .title {
 	font-size: 250%;
 	color: [[ColorPalette::PrimaryLight]];
-	font-family: 'Trebuchet MS' sans-serif;
+	font-family: 'Trebuchet MS', sans-serif;
 }
 
 /* more subtle tiddler subtitle */
