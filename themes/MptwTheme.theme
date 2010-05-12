@@ -85,7 +85,7 @@ http://mptw.tiddlyspot.com/#MptwTheme ($Rev: 1829 $)
 	<span style="padding:1em;"></span>
 	<span macro='toolbar closeTiddler closeOthers +editTiddler deleteTiddler > fields syncing permalink references jump'></span> <span macro='newHere label:"new here"'></span>
 	<span macro='newJournalHere {{config.mptwJournalFormat?config.mptwJournalFormat:"MM/0DD/YY"}}'></span>
-	<span macro='mptwCollapse -'></span>
+	<!--span macro='mptwCollapse -'></span-->
 </div>
 <!--}}}-->
 

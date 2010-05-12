@@ -458,7 +458,7 @@ config.taggly = {
 		var childOutput = "";
 
 		if (depth > this.config.siteMapDepthLimit)
-			childOutput += indent + this.lingo.tooDeepMessage;
+			childOutput += indent + this.lingo.tooDeepMessage + "\n";
 		else
 			for (var i=0;i<list.length;i++)
 				if (list[i].title != title)

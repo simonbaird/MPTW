@@ -36,7 +36,7 @@ if (config.options.txtTheme == '')
 config.shadowTiddlers.GettingStarted += "\n\nSee also [[MPTW]].";
 
 // add select theme and palette controls in default OptionsPanel
-config.shadowTiddlers.OptionsPanel = config.shadowTiddlers.OptionsPanel.replace(/(\n\-\-\-\-\nAlso see AdvancedOptions)/, "{{select{<<selectTheme>>\n<<selectPalette>>}}}$1");
+config.shadowTiddlers.OptionsPanel = config.shadowTiddlers.OptionsPanel.replace(/(\n\-\-\-\-\nAlso see \[\[AdvancedOptions\]\])/, "{{select{<<selectTheme>>\n<<selectPalette>>}}}$1");
 
 // these are used by ViewTemplate
 config.mptwDateFormat = 'DD/MM/YY';
