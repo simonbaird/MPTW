@@ -39,7 +39,7 @@ config.renameTags = {
 
 		saveTiddler_orig_renameTags: TiddlyWiki.prototype.saveTiddler,
 
-		saveTiddler: function(title,newTitle,newBody,modifier,modified,tags,fields,clearChangeCount,created) {
+		saveTiddler: function(title,newTitle,newBody,modifier,modified,tags,fields,clearChangeCount,created,creator) {
 			if (title != newTitle) {
 				var tagged = this.getTaggedTiddlers(title);
 				if (tagged.length > 0) {
@@ -52,7 +52,7 @@ config.renameTags = {
 						return null;
 				}
 			}
-			return this.saveTiddler_orig_renameTags(title,newTitle,newBody,modifier,modified,tags,fields,clearChangeCount,created);
+			return this.saveTiddler_orig_renameTags(title,newTitle,newBody,modifier,modified,tags,fields,clearChangeCount,created,creator);
 		},
 
 		removeTiddler_orig_renameTags: TiddlyWiki.prototype.removeTiddler,
