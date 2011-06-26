@@ -1,8 +1,8 @@
 /***
 |Name:|HideWhenPlugin|
 |Description:|Allows conditional inclusion/exclusion in templates|
-|Version:|3.1 ($Rev: 3919 $)|
-|Date:|$Date: 2008-03-13 02:03:12 +1000 (Thu, 13 Mar 2008) $|
+|Version:|3.2 |
+|Date:|$Date: 2011-06-26 (Sun, 26 Jun 2011) $|
 |Source:|http://mptw.tiddlyspot.com/#HideWhenPlugin|
 |Author:|Simon Baird <simon.baird@gmail.com>|
 |License:|http://mptw.tiddlyspot.com/#TheBSDLicense|
@@ -17,7 +17,7 @@ window.hideWhenLastTest = false;
 window.removeElementWhen = function(test,place) {
 	window.hideWhenLastTest = test;
 	if (test) {
-		removeChildren(place);
+        jQuery(place).empty()
 		place.parentNode.removeChild(place);
 	}
 };
