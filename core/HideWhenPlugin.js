@@ -17,7 +17,7 @@ window.hideWhenLastTest = false;
 window.removeElementWhen = function(test,place) {
 	window.hideWhenLastTest = test;
 	if (test) {
-        jQuery(place).empty()
+		jQuery(place).empty()
 		place.parentNode.removeChild(place);
 	}
 };
