@@ -2,7 +2,7 @@
 
 require 'r4tw'
 
-$version_number = '2.6.1';
+$version_number = '2.7.0';
 
 make_tw {
   source_file           'empties/empty.html'
