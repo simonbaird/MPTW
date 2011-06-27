@@ -1,8 +1,8 @@
 /***
 |Name:|InstantTimestampPlugin|
 |Description:|A handy way to insert timestamps in your tiddler content|
-|Version:|1.0.10 ($Rev: 3646 $)|
-|Date:|$Date: 2008-02-27 02:34:38 +1000 (Wed, 27 Feb 2008) $|
+|Version:|1.0.10a|
+|Date:|27-Jun-2011|
 |Source:|http://mptw.tiddlyspot.com/#InstantTimestampPlugin|
 |Author:|Simon Baird <simon.baird@gmail.com>|
 |License:|http://mptw.tiddlyspot.com/#TheBSDLicense|
@@ -22,71 +22,70 @@ If you enter {ts} in your tiddler content (without the spaces) it will be replac
 
 config.InstantTimestamp = {
 
-	// adjust to suit
-	timeFormat: 'DD/0MM/YY 0hh:0mm',
-	dateFormat: 'DD/0MM/YY',
+  // adjust to suit
+  timeFormat: 'DD/0MM/YY 0hh:0mm',
+  dateFormat: 'DD/0MM/YY',
 
-	translations: [
-		[/^!ts?$/img,  "'!!{{ts{'+now.formatString(config.InstantTimestamp.timeFormat)+'}}}'"],
-		[/^!ds?$/img,  "'!!{{ds{'+now.formatString(config.InstantTimestamp.dateFormat)+'}}}'"],
+  translations: [
+    [/^!ts?$/img,  "'!!{{ts{'+now.formatString(config.InstantTimestamp.timeFormat)+'}}}'"],
+    [/^!ds?$/img,  "'!!{{ds{'+now.formatString(config.InstantTimestamp.dateFormat)+'}}}'"],
 
-		// thanks Adapted Cat
-		[/\{ts?\}(?!\}\})/ig,"'{{ts{'+now.formatString(config.InstantTimestamp.timeFormat)+'}}}'"],
-		[/\{ds?\}(?!\}\})/ig,"'{{ds{'+now.formatString(config.InstantTimestamp.dateFormat)+'}}}'"]
-		
-	],
+    // thanks Adapted Cat
+    [/\{ts?\}(?!\}\})/ig,"'{{ts{'+now.formatString(config.InstantTimestamp.timeFormat)+'}}}'"],
+    [/\{ds?\}(?!\}\})/ig,"'{{ds{'+now.formatString(config.InstantTimestamp.dateFormat)+'}}}'"]
 
-	excludeTags: [
-		"noAutoCorrect",
-		"noTimestamp",
-		"html",
-		"CSS",
-		"css",
-		"systemConfig",
-		"systemConfigDisabled",
-		"zsystemConfig",
-		"Plugins",
-		"Plugin",
-		"plugins",
-		"plugin",
-		"javascript",
-		"code",
-		"systemTheme",
-		"systemPalette"
-	],
+  ],
 
-	excludeTiddlers: [
-		"StyleSheet",
-		"StyleSheetLayout",
-		"StyleSheetColors",
-		"StyleSheetPrint"
-		// more?
-	]
+  excludeTags: [
+    "noAutoCorrect",
+    "noTimestamp",
+    "html",
+    "CSS",
+    "css",
+    "systemConfig",
+    "systemConfigDisabled",
+    "zsystemConfig",
+    "Plugins",
+    "Plugin",
+    "plugins",
+    "plugin",
+    "javascript",
+    "code",
+    "systemTheme",
+    "systemPalette"
+  ],
 
-}; 
+  excludeTiddlers: [
+    "StyleSheet",
+    "StyleSheetLayout",
+    "StyleSheetColors",
+    "StyleSheetPrint"
+    // more?
+  ]
+
+};
 
 TiddlyWiki.prototype.saveTiddler_mptw_instanttimestamp = TiddlyWiki.prototype.saveTiddler;
 TiddlyWiki.prototype.saveTiddler = function(title,newTitle,newBody,modifier,modified,tags,fields,clearChangeCount,created) {
 
-	tags = tags ? tags : []; // just in case tags is null
-	tags = (typeof(tags) == "string") ? tags.readBracketedList() : tags;
-	var conf = config.InstantTimestamp;
+  tags = tags ? tags : []; // just in case tags is null
+  tags = (typeof(tags) == "string") ? tags.readBracketedList() : tags;
+  var conf = config.InstantTimestamp;
 
-	if ( !tags.containsAny(conf.excludeTags) && !conf.excludeTiddlers.contains(newTitle) ) {
+  if ( !tags.containsAny(conf.excludeTags) && !conf.excludeTiddlers.contains(newTitle) ) {
 
-		var now = new Date();
-		var trans = conf.translations;
-		for (var i=0;i<trans.length;i++) {
-			newBody = newBody.replace(trans[i][0], eval(trans[i][1]));
-		}
-	}
+    var now = new Date();
+    var trans = conf.translations;
+    for (var i=0;i<trans.length;i++) {
+      newBody = newBody.replace(trans[i][0], eval(trans[i][1]));
+    }
+  }
 
-	// TODO: use apply() instead of naming all args?
-	return this.saveTiddler_mptw_instanttimestamp(title,newTitle,newBody,modifier,modified,tags,fields,clearChangeCount,created);
+  // TODO: use apply() instead of naming all args?
+  return this.saveTiddler_mptw_instanttimestamp(title,newTitle,newBody,modifier,modified,tags,fields,clearChangeCount,created);
 }
 
-// you can override these in StyleSheet 
+// you can override these in StyleSheet
 setStylesheet(".ts,.ds { font-style:italic; }","instantTimestampStyles");
 
 //}}}
-

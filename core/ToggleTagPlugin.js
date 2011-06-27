@@ -1,8 +1,8 @@
 /***
 |Name:|ToggleTagPlugin|
 |Description:|Makes a checkbox which toggles a tag in a tiddler|
-|Version:|3.1.0 ($Rev: 4907 $)|
-|Date:|$Date: 2008-05-13 03:15:46 +1000 (Tue, 13 May 2008) $|
+|Version:|3.1.0a|
+|Date:|27-Jun-2011|
 |Source:|http://mptw.tiddlyspot.com/#ToggleTagPlugin|
 |Author:|Simon Baird <simon.baird@gmail.com>|
 |License:|http://mptw.tiddlyspot.com/#TheBSDLicense|
@@ -34,37 +34,37 @@ if (config.toggleTagAlwaysTouchModDate == undefined) config.toggleTagAlwaysTouch
 
 merge(config.macros,{
 
-	toggleTag: {
+  toggleTag: {
 
-		createIfRequired: true,
-		shortLabel: "[[%0]]",
-		longLabel: "[[%0]] [[%1]]",
+    createIfRequired: true,
+    shortLabel: "[[%0]]",
+    longLabel: "[[%0]] [[%1]]",
 
-		handler: function(place,macroName,params,wikifier,paramString,tiddler) {
-			var tiddlerTitle = tiddler ? tiddler.title : '';
-			var tag   = (params[0] && params[0] != '.') ? params[0] : "checked";
-			var title = (params[1] && params[1] != '.') ? params[1] : tiddlerTitle;
-			var defaultLabel = (title == tiddlerTitle ? this.shortLabel : this.longLabel);
-			var label = (params[2] && params[2] != '.') ? params[2] : defaultLabel;
-			var touchMod = (params[3] && params[3] != '.') ? params[3] : "";
-			label = (label == '-' ? '' : label); // dash means no label
-			var theTiddler = (title == tiddlerTitle ? tiddler : store.getTiddler(title));
-			var cb = createTiddlyCheckbox(place, label.format([tag,title]), theTiddler && theTiddler.isTagged(tag), function(e) {
-				if (!store.tiddlerExists(title)) {
-					if (config.macros.toggleTag.createIfRequired) {
-						var content = store.getTiddlerText(title); // just in case it's a shadow
-						store.saveTiddler(title,title,content?content:"",config.options.txtUserName,new Date(),null);
-					}
-					else 
-						return false;
-				}
-				if ((touchMod != "" || config.toggleTagAlwaysTouchModDate) && theTiddler)
-						theTiddler.modified = new Date();
-				store.setTiddlerTag(title,this.checked,tag);
-				return true;
-			});
-		}
-	}
+    handler: function(place,macroName,params,wikifier,paramString,tiddler) {
+      var tiddlerTitle = tiddler ? tiddler.title : '';
+      var tag   = (params[0] && params[0] != '.') ? params[0] : "checked";
+      var title = (params[1] && params[1] != '.') ? params[1] : tiddlerTitle;
+      var defaultLabel = (title == tiddlerTitle ? this.shortLabel : this.longLabel);
+      var label = (params[2] && params[2] != '.') ? params[2] : defaultLabel;
+      var touchMod = (params[3] && params[3] != '.') ? params[3] : "";
+      label = (label == '-' ? '' : label); // dash means no label
+      var theTiddler = (title == tiddlerTitle ? tiddler : store.getTiddler(title));
+      var cb = createTiddlyCheckbox(place, label.format([tag,title]), theTiddler && theTiddler.isTagged(tag), function(e) {
+        if (!store.tiddlerExists(title)) {
+          if (config.macros.toggleTag.createIfRequired) {
+            var content = store.getTiddlerText(title); // just in case it's a shadow
+            store.saveTiddler(title,title,content?content:"",config.options.txtUserName,new Date(),null);
+          }
+          else
+            return false;
+        }
+        if ((touchMod != "" || config.toggleTagAlwaysTouchModDate) && theTiddler)
+            theTiddler.modified = new Date();
+        store.setTiddlerTag(title,this.checked,tag);
+        return true;
+      });
+    }
+  }
 });
 
 //}}}
