@@ -23,3 +23,11 @@ make_tw {
   to_file               'upload/empty.html'
 }
 
+# Create .meta files
+Dir['core/*.js'].each do |plugin_file|
+  t = Tiddler.new(plugin_file)
+  t.fields['modifier'] = 'MPTW'
+  t.to_cook_meta.to_file("#{plugin_file}.meta")
+end
+puts "Wrote meta files"
+

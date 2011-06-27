@@ -6,10 +6,13 @@
 # r4tw is some ruby classes for manipuating TiddlyWikis and tiddlers.
 # It is similar to cook and ginsu but cooler.
 #
-# <i>$Rev: 3475 $</i>
-# 
 # ===Known problems
 # from_remote_tw can be problematic if importing from a 2.1 TW into a 2.2 TW.
+#
+# Note: probably should rewrite this as a an extention to cook/slice.
+#
+# Note: should make this is gem or at least a submodule. It has it's
+# own repo, but this is just a copy and probably out of sync...
 #
 
 
@@ -323,7 +326,18 @@ class Tiddler
     #  "<div #{fields_string.join(' ')}>#{@fields['text'].escapeLineBreaks.encodeHTML}</div>"
     #end
 
+  end
 
+  # Build meta files as used by cook and slice
+  # Does not do extended fields. TODO
+  def to_cook_meta
+    [
+      "created: #{self.created}",
+      "modified: #{self.modified}",
+      "modifier: #{self.modifier}",
+      "tags: #{self.tags}",
+      "",
+    ].join("\n")
   end
 
   alias to_div to_s #:nodoc:
