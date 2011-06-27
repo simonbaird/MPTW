@@ -1,8 +1,8 @@
 /***
 |Name:|TagglyTaggingPlugin|
 |Description:|tagglyTagging macro is a replacement for the builtin tagging macro in your ViewTemplate|
-|Version:|3.3.1 ($Rev: 9828 $)|
-|Date:|$Date: 2009-06-03 21:38:41 +1000 (Wed, 03 Jun 2009) $|
+|Version:|3.3.2|
+|Date:|$Date: 2011-06-26 (Sun, 26 Jun 2011) $|
 |Source:|http://mptw.tiddlyspot.com/#TagglyTaggingPlugin|
 |Author:|Simon Baird <simon.baird@gmail.com>|
 |License:|http://mptw.tiddlyspot.com/#TheBSDLicense|
@@ -517,7 +517,7 @@ config.taggly = {
 				var title = place.getAttribute("title");
 				var isTagExpr = place.getAttribute("isTagExpr") == "true";
 				var showEmpty = place.getAttribute("showEmpty") == "true";
-				removeChildren(place);
+				jQuery(place).empty()
 				addClass(place,"tagglyTagging");
 				var countFound = config.taggly.getTiddlers(title,'title',isTagExpr).length
 				if (countFound > 0 || showEmpty) {
