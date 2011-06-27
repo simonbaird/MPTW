@@ -8,7 +8,7 @@ make_tw {
   source_file           'empties/empty.html'
   to_file               'upload/emptyempty.html'
   remove_tiddler        'LegacyStrikeThroughPlugin'
-  add_tiddlers_from_dir 'core'
+  add_tiddlers_from_dir 'core','*.js'
   add_tiddlers_from_dir 'themes'
   add_tiddlers_from_dir 'palettes'
   store_to_file         'upload/upgrade.html'
