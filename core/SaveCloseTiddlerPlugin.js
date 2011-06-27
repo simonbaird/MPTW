@@ -1,12 +1,13 @@
 /***
 |Name:|SaveCloseTiddlerPlugin|
 |Description:|Provides two extra toolbar commands, saveCloseTiddler and cancelCloseTiddler|
-|Version:|3.0 ($Rev: 5502 $)|
-|Date:|$Date: 2008-06-10 23:31:39 +1000 (Tue, 10 Jun 2008) $|
+|Version:|3.0a|
+|Date:|27-Jun-2011|
 |Source:|http://mptw.tiddlyspot.com/#SaveCloseTiddlerPlugin|
 |Author:|Simon Baird <simon.baird@gmail.com>|
 |License:|http://mptw.tiddlyspot.com/#TheBSDLicense|
-To use these you must add them to the tool bar in your EditTemplate
+To use these add them to the commands in ToolbarCommands under EditToolbar,
+or in the MptwTheme tiddler under EditTemplate.
 ***/
 //{{{
 merge(config.commands,{
