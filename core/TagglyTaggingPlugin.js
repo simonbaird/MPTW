@@ -518,7 +518,7 @@ config.taggly = {
         var isTagExpr = place.getAttribute("isTagExpr") == "true";
         var showEmpty = place.getAttribute("showEmpty") == "true";
         jQuery(place).empty()
-        addClass(place,"tagglyTagging");
+        jQuery(place).addClass("tagglyTagging");
         var countFound = config.taggly.getTiddlers(title,'title',isTagExpr).length
         if (countFound > 0 || showEmpty) {
           var lingo = config.taggly.lingo;
