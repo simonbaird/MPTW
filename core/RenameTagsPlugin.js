@@ -1,8 +1,8 @@
 /***
 |Name:|RenameTagsPlugin|
 |Description:|Allows you to easily rename or delete tags across multiple tiddlers|
-|Version:|3.0a|
-|Date:|27-Jun-2011|
+|Version:|3.1|
+|Date:|17-Jun-2013|
 |Source:|http://mptw.tiddlyspot.com/#RenameTagsPlugin|
 |Author:|Simon Baird <simon.baird@gmail.com>|
 |License|http://mptw.tiddlyspot.com/#TheBSDLicense|
@@ -28,8 +28,10 @@ config.renameTags = {
   renameTag: function(oldTag,newTag,tiddlers) {
     store.suspendNotifications();
     for (var i=0;i<tiddlers.length;i++) {
-      store.setTiddlerTag(tiddlers[i].title,false,oldTag); // remove old
-      store.setTiddlerTag(tiddlers[i].title,true,newTag);  // add new
+      var title = tiddlers[i].title;
+      store.setTiddlerTag(title, false, oldTag); // remove old
+      store.setTiddlerTag(title, true, newTag);  // add new
+      store.getTiddler(title).modified = new Date(); // touch modified date
     }
     store.resumeNotifications();
     store.notifyAll();

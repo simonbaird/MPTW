@@ -25,7 +25,7 @@ config.options.txtBackupFolder = 'twbackup';  // put backups in a backups folder
 
 config.options.chkAutoSave = (window.location.protocol == "file:"); // do autosave if we're in local file
 
-config.mptwVersion = "2.7.3";
+config.mptwVersion = "2.7.4";
 
 config.macros.mptwVersion={handler:function(place){wikify(config.mptwVersion,place);}};
 
