@@ -72,7 +72,7 @@ TiddlyWiki.prototype.saveTiddler = function(title,newTitle,newBody,modifier,modi
   tags = (typeof(tags) == "string") ? tags.readBracketedList() : tags;
   var conf = config.InstantTimestamp;
 
-  if ( !tags.containsAny(conf.excludeTags) && !conf.excludeTiddlers.contains(newTitle) ) {
+  if ( !!newBody && !tags.containsAny(conf.excludeTags) && !conf.excludeTiddlers.contains(newTitle) ) {
 
     var now = new Date();
     var trans = conf.translations;
