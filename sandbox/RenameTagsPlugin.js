@@ -12,9 +12,9 @@ Rename a tag and you will be prompted to rename it in all its tagged tiddlers.
 config.renameTags = {
 
 	prompts: {
-		rename: "Rename the tag '%0' to '%1' in %2 tidder%3?",
-		remove: "Remove the tag '%0' from %1 tidder%2?",
-		update: "Rename links to '%0' to '%1' in %2 tidder%3?"
+		rename: "Rename the tag '%0' to '%1' in %2 tiddler%3?",
+		remove: "Remove the tag '%0' from %1 tiddler%2?",
+		update: "Rename links to '%0' to '%1' in %2 tiddler%3?"
 	},
 
 	removeTag: function(tag,tiddlers) {
